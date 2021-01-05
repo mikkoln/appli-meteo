@@ -70,11 +70,18 @@ form {
         filter: opacity(.5);
         transition: filter .2s;
     }
+
+    label {
+        width: 0;
+        height: 0;
+        overflow: hidden;
+    }
 }
 
 #contenu {
     display: flex;
     flex-direction: column;
+    min-height: calc(100vh - 70px);
     margin-top: 20px;
 
     * {
@@ -84,12 +91,20 @@ form {
     }
 
     #city {
-        font-size: 160%;
+        font-size: 200%;
         font-weight: bold;
     }
 
     #date, #humidity {
         font-size: 80%;
+    }
+
+    #humidity {
+        margin-bottom: 50px;
+    }
+
+    #icon {
+        max-width: 50%;
     }
 
     #condition {
@@ -104,7 +119,7 @@ form {
 
 #forecast {
     width: 100%;
-    margin: 40px 0 0 0;
+    margin: auto 0 0 0;
     padding: 0 2%;
     background-color: rgba(255, 255, 255, .25);
 
@@ -113,25 +128,22 @@ form {
         flex-direction: column;
         margin: 0;
         padding: 20px 10px 20px 10px;
+        object-fit: contain;
 
         img {
+            max-height: 75px;
             margin-right: auto;
         }
 
         p {
             margin: 0;
             text-align: left !important;
+            object-fit: contain;
         
             i {
                 margin-right: 5px;
+                opacity: .5;
             }
         }
-    }
-}
-
-#forecast {
-    img {
-        margin: 0 10px 10px 0;
-        object-fit: contain;
     }
 }

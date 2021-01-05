@@ -14,29 +14,37 @@ $(document).ready(function(){
         $('#champs_ville').val('');
 
         $('#date').html((monArray).fcst_day_0.day_long + ' ' + (monArray).current_condition.date);
-        $('#city').html((monArray).city_info.name);
+        if ((monArray).city_info.name == 'Bruxelles 1') {
+          $('#city').html('Bruxelles');
+        } else {$('#city').html((monArray).city_info.name);
+      }
         $('#condition').html((monArray).current_condition.condition);
         $('#temperature').html((monArray).current_condition.tmp + '°');
         $('#humidity').html('Humidité: ' + (monArray).current_condition.humidity + '%');
-        $('#icon').attr('src', (monArray).current_condition.icon_big);
+        $('#icon').attr('src', "/img/" + (monArray).current_condition.condition_key+".svg");
+        $('#icon').attr('alt', (monArray).current_condition.condition);
 
         $('.day_1 .fcst_date').html((monArray).fcst_day_1.day_short)
-        $('.day_1 .fcst_icon').attr('src', (monArray).fcst_day_1.icon)
+        $('.day_1 .fcst_icon').attr('src', "/img/" + (monArray).fcst_day_1.condition_key + ".svg")
+        $('.day_1 .fcst_icon').attr('alt', (monArray).fcst_day_1.condition);
         $('.day_1 .fcst_t_max').html('<strong><i class="fas fa-angle-up"></i></strong> ' + (monArray).fcst_day_1.tmax + '°')
         $('.day_1 .fcst_t_min').html('<strong><i class="fas fa-angle-down"></i></strong> ' +(monArray).fcst_day_1.tmin + '°')
 
         $('.day_2 .fcst_date').html((monArray).fcst_day_2.day_short)
-        $('.day_2 .fcst_icon').attr('src', (monArray).fcst_day_2.icon)
+        $('.day_2 .fcst_icon').attr('src', "/img/" + (monArray).fcst_day_2.condition_key + ".svg")
+        $('.day_2 .fcst_icon').attr('alt', (monArray).fcst_day_2.condition);
         $('.day_2 .fcst_t_max').html('<strong><i class="fas fa-angle-up"></i></strong> ' + (monArray).fcst_day_2.tmax + '°')
         $('.day_2 .fcst_t_min').html('<strong><i class="fas fa-angle-down"></i></strong> ' +(monArray).fcst_day_2.tmin + '°')
 
         $('.day_3 .fcst_date').html((monArray).fcst_day_3.day_short)
-        $('.day_3 .fcst_icon').attr('src', (monArray).fcst_day_3.icon)
+        $('.day_3 .fcst_icon').attr('src', "/img/" + (monArray).fcst_day_3.condition_key + ".svg")
+        $('.day_3 .fcst_icon').attr('alt', (monArray).fcst_day_3.condition);
         $('.day_3 .fcst_t_max').html('<strong><i class="fas fa-angle-up"></i></strong> ' + (monArray).fcst_day_3.tmax + '°')
         $('.day_3 .fcst_t_min').html('<strong><i class="fas fa-angle-down"></i></strong> ' +(monArray).fcst_day_3.tmin + '°')
 
         $('.day_4 .fcst_date').html((monArray).fcst_day_4.day_short)
-        $('.day_4 .fcst_icon').attr('src', (monArray).fcst_day_4.icon)
+        $('.day_4 .fcst_icon').attr('src', "/img/" + (monArray).fcst_day_4.condition_key + ".svg")
+        $('.day_4 .fcst_icon').attr('alt', (monArray).fcst_day_4.condition);
         $('.day_4 .fcst_t_max').html('<strong><i class="fas fa-angle-up"></i></strong> ' + (monArray).fcst_day_4.tmax + '°')
         $('.day_4 .fcst_t_min').html('<strong><i class="fas fa-angle-down"></i></strong> ' +(monArray).fcst_day_4.tmin + '°')
 
