@@ -2,6 +2,8 @@ $(document).ready(function(){
 
   function ChargerMeteo(ville) {
 
+    $('#champs_ville').blur();
+
     $.ajax({
 
       url : 'https://www.prevision-meteo.ch/services/json/' + ville,
@@ -16,8 +18,9 @@ $(document).ready(function(){
         $('#date').html((monArray).fcst_day_0.day_long + ' ' + (monArray).current_condition.date);
         if ((monArray).city_info.name == 'Bruxelles 1') {
           $('#city').html('Bruxelles');
-        } else {$('#city').html((monArray).city_info.name);
-      }
+        } else {
+          $('#city').html((monArray).city_info.name);
+        }
         $('#condition').html((monArray).current_condition.condition);
         $('#temperature').html((monArray).current_condition.tmp + '°');
         $('#humidity').html('Humidité: ' + (monArray).current_condition.humidity + '%');

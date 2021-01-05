@@ -1,0 +1,19 @@
+{
+    "short_name": "App Météo",
+    "name": "Application météo",
+    "description": "Application météo sur cinq jours",
+    "icons": [
+      {
+        "src": "/img/icon.png",
+        "type": "image/png",
+        "sizes": "512x512",
+        "purpose": "any maskable"
+      }
+    ],
+    "start_url": "index.html",
+    "background_color": "#81e3fe",
+    "display": "fullscreen",
+    "theme_color": "#fff",
+    "shortcuts": [
+    ]
+  }

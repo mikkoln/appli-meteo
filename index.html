@@ -7,14 +7,25 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="css/style.css">
+    <meta name="theme-color" content="#fff"/>
+    <link rel="icon" sizes="512x512" href="/img/icon.png">
+    <link rel="manifest" href="manifest.json">
+    <!-- reuse same icon for Safari -->
+    <link rel="apple-touch-icon" href="/img/icon.png">
+    <!-- multiple icons for IE -->
+    <meta name="msapplication-square310x310logo" content="/img/icon.png">
+    <link rel="apple-touch-icon" href="/img/icon.png">
+    <meta name="msapplication-square70x70logo" content="/img/icon.png">
+    <meta name="msapplication-square150x150logo" content="/img/icon.png">
+    <meta name="msapplication-wide310x150logo" content="/img/icon.png">
     <title>Météo</title>
 </head>
 <body>
     <div id="application">
         <form autocomplete="off" class="form-inline">
             <div class="form-group">
-                <input type="text" id="champs_ville" placeholder="Rechercher une ville...">
-                <label for="champs_ville">Rechercher une ville...</label>
+                <input type="text" id="champs_ville" placeholder="Rechercher une ville">
+                <label for="champs_ville">Rechercher une ville</label>
                 <button type="" id="bouton_ville" class="btn"><i class="fas fa-search" aria-label="Rechercher une ville"></i></button>
             </div>
             <button type="" id="bouton_reset" class="btn"><i class="fas fa-map-marker-alt" aria-label="Localisation actuelle"></i></button>
@@ -53,10 +64,52 @@
                 </div>
             </div>
         </div>
+        <div id="download">
+            <button id="btnDownload" class="d-none"><i class="fas fa-download"></i> Télécharger l'application</button>
+        </div>
     </div>
     </div>
+    <script src="sw.js"></script>
     <script src="js/jquery-3.5.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/script.js"></script><script>
+        if('serviceWorker' in navigator) {
+          navigator.serviceWorker
+                   .register('/sw.js')
+                   .then(function() { console.log("Service Worker Registered"); });
+        }
+        // fonction qui check si appli installable
+        window.addEventListener('beforeinstallprompt', (e) => {
+            console.log("beforeinstallprompt");
+        // Stash the event so it can be triggered later.
+        deferredPrompt = e;
+        // Update UI notify the user they can add to home screen
+        showInstallPromotion();
+    });
+    
+    function  showInstallPromotion() {
+      //  alert("ok on peut installer");
+       $('#btnDownload').removeClass('d-none');
+    }
+    
+    var btnAdd = document.getElementById("btnDownload");
+    
+    btnAdd.addEventListener('click', (e) => {
+      // hide our user interface that shows our A2HS button
+      btnAdd.style.display = 'none';
+      // Show the prompt
+      deferredPrompt.prompt();
+      // Wait for the user to respond to the prompt
+      deferredPrompt.userChoice
+        .then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            console.log('User accepted the A2HS prompt');
+          } else {
+            console.log('User dismissed the A2HS prompt');
+          }
+          deferredPrompt = null;
+        });
+    });
+    </script>
 </body>
 </html>
