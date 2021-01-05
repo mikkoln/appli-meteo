@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+* {
+  color: #fff !important;
+  font-family: 'Poppins', sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.btn:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+html {
+  min-height: 100%;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#81e3fe), to(#66a8ff));
+  background-image: linear-gradient(#81e3fe, #66a8ff);
+  background-size: cover;
+}
+
+body {
+  background-color: transparent;
+}
+
+#application {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+form .form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: auto;
+  width: calc(100% - 50px);
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+form .form-group input {
+  width: calc(100% - 50px);
+  height: 50px;
+  padding-left: 15px;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+form .form-group input::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: lighter;
+  text-transform: none;
+}
+
+form .form-group input:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: lighter;
+  text-transform: none;
+}
+
+form .form-group input::-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: lighter;
+  text-transform: none;
+}
+
+form .form-group input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: lighter;
+  text-transform: none;
+}
+
+form .form-group #bouton_ville {
+  width: 50px;
+}
+
+form #bouton_reset {
+  width: 50px;
+}
+
+form button:hover {
+  -webkit-filter: opacity(0.5);
+          filter: opacity(0.5);
+  -webkit-transition: -webkit-filter .2s;
+  transition: -webkit-filter .2s;
+  transition: filter .2s;
+  transition: filter .2s, -webkit-filter .2s;
+}
+
+#contenu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 20px;
+}
+
+#contenu * {
+  margin: 0 auto;
+  text-align: center;
+  font-weight: lighter;
+}
+
+#contenu #city {
+  font-size: 160%;
+  font-weight: bold;
+}
+
+#contenu #date, #contenu #humidity {
+  font-size: 80%;
+}
+
+#contenu #condition {
+  font-size: 120%;
+}
+
+#contenu #temperature {
+  font-size: 5em;
+  font-weight: bold;
+}
+
+#forecast {
+  width: 100%;
+  margin: 40px 0 0 0;
+  padding: 0 2%;
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+#forecast div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0;
+  padding: 20px 10px 20px 10px;
+}
+
+#forecast div img {
+  margin-right: auto;
+}
+
+#forecast div p {
+  margin: 0;
+  text-align: left !important;
+}
+
+#forecast div p i {
+  margin-right: 5px;
+}
+
+#forecast img {
+  margin: 0 10px 10px 0;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+/*# sourceMappingURL=style.css.map */

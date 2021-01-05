@@ -1,65 +1,120 @@
-$(document).ready(function() {
+$(document).ready(function(){
 
-    function loadMeteo(ville) {
+  function ChargerMeteo(ville) {
 
-        var url2 = 'https://www.prevision-meteo.cj/sevices/json/Mons'
+    $.ajax({
 
-        $.ajax({
-            url = url2,
-            method: 'GET',
-            dataType: 'json',
+      url : 'https://www.prevision-meteo.ch/services/json/' + ville,
+      type : 'GET',
+      dataType : 'json',
 
-            success:function(monObjet2){
-                console.log(monObjet2)
+      success : function(monArray) {
+        
+        $('#contenu').addClass('d-none');
+        $('#champs_ville').val('');
 
-                $('h1').html(monObjet2.city_info.name + ', ' + monObjet2.city_info.country)
-                $('.daycurrent h2').html(monObjet2.current_condition.condition);
-                $('.daycurrent img').attr('src', monObjet2.current_condition.icon_big)
-                $('.daycurrent .date').html(monObjet2.current_condition.date)
-                $('.daycurrent .temperature').html(monObjet2.current_condition.tmp + ' °C')
+        $('#date').html((monArray).fcst_day_0.day_long + ' ' + (monArray).current_condition.date);
+        $('#city').html((monArray).city_info.name);
+        $('#condition').html((monArray).current_condition.condition);
+        $('#temperature').html((monArray).current_condition.tmp + '°');
+        $('#humidity').html('Humidité: ' + (monArray).current_condition.humidity + '%');
+        $('#icon').attr('src', (monArray).current_condition.icon_big);
 
-                $('.day0 h2').html(monObjet2.fcst_day_0.condition)
-                $('.day0 img').attr('src', 'img/' + monObjet2.fcst_day_0.condition_key + '.png')
-                $('.day0 .date').html(monObjet2.fcst_day_0.day_long + monObjet2.fcst_day_0.date)
-                $('.day0 .temperaturemax').html(monObjet2.current_condition.tmp + ' °C')
-                $('.day0 .temperaturemin').html(monObjet2.current_condition.tmp + ' °C')
+        $('.day_1 .fcst_date').html((monArray).fcst_day_1.day_short)
+        $('.day_1 .fcst_icon').attr('src', (monArray).fcst_day_1.icon)
+        $('.day_1 .fcst_t_max').html('<strong><i class="fas fa-angle-up"></i></strong> ' + (monArray).fcst_day_1.tmax + '°')
+        $('.day_1 .fcst_t_min').html('<strong><i class="fas fa-angle-down"></i></strong> ' +(monArray).fcst_day_1.tmin + '°')
 
-            }
-        })
+        $('.day_2 .fcst_date').html((monArray).fcst_day_2.day_short)
+        $('.day_2 .fcst_icon').attr('src', (monArray).fcst_day_2.icon)
+        $('.day_2 .fcst_t_max').html('<strong><i class="fas fa-angle-up"></i></strong> ' + (monArray).fcst_day_2.tmax + '°')
+        $('.day_2 .fcst_t_min').html('<strong><i class="fas fa-angle-down"></i></strong> ' +(monArray).fcst_day_2.tmin + '°')
 
-    } //fct loadMeteo
+        $('.day_3 .fcst_date').html((monArray).fcst_day_3.day_short)
+        $('.day_3 .fcst_icon').attr('src', (monArray).fcst_day_3.icon)
+        $('.day_3 .fcst_t_max').html('<strong><i class="fas fa-angle-up"></i></strong> ' + (monArray).fcst_day_3.tmax + '°')
+        $('.day_3 .fcst_t_min').html('<strong><i class="fas fa-angle-down"></i></strong> ' +(monArray).fcst_day_3.tmin + '°')
 
+        $('.day_4 .fcst_date').html((monArray).fcst_day_4.day_short)
+        $('.day_4 .fcst_icon').attr('src', (monArray).fcst_day_4.icon)
+        $('.day_4 .fcst_t_max').html('<strong><i class="fas fa-angle-up"></i></strong> ' + (monArray).fcst_day_4.tmax + '°')
+        $('.day_4 .fcst_t_min').html('<strong><i class="fas fa-angle-down"></i></strong> ' +(monArray).fcst_day_4.tmin + '°')
 
+        $('#contenu').removeClass('d-none');
+
+      },
+      error : function(ville) {
+
+        alert('error');
+
+      }
+    }) // ajax
+  } // fonction ChargerMeteo
+
+  navigator.geolocation.getCurrentPosition(function(position){
+
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+    
+    var url = 'https://us1.locationiq.com/v1/reverse.php?key=pk.be769affcc1c32a02b8a96ec76127a93&format=json&lat='+lat+'&lon='+lng+''
+
+    $.ajax({
+        url: url,
+        method: 'GET',
+        dataType: 'json',
+
+        success:function(monObjet){
+
+            var ville = monObjet.address.town;
+            ChargerMeteo(ville)
+
+        }
+    })
+  }) // navigator
+
+  $('#bouton_ville').click(function(e){
+    e.preventDefault();
+
+    var ville = $('#champs_ville').val()
+
+    if (ville == "bruxelles" || ville == "Bruxelles"|| ville == "BRUXELLES") {
+      ville = "bruxelles-1";
+    }
+
+    if (ville != '') {
+      ChargerMeteo(ville)
+    }
+  })
+  
+  $('#bouton_reset').click(function(e){
+    e.preventDefault();
 
     navigator.geolocation.getCurrentPosition(function(position){
 
-        var lat = position.coords.latitude;
-        var lng = position.coords.longitude;
-        
-        console.log('lat:' + lat + ' lng: ' + lng)
-        
-        var url = 'https://us1.locationiq.com/v1/reverse.php?key=pk.be769affcc1c32a02b8a96ec76127a93&format=json&lat='+lat+'&lon='+lng+''
+    var lat = position.coords.latitude;
+    var lng = position.coords.longitude;
+    
+    var url = 'https://us1.locationiq.com/v1/reverse.php?key=pk.be769affcc1c32a02b8a96ec76127a93&format=json&lat='+lat+'&lon='+lng+''
 
-        $.ajax({
-            url: url,
-            method: 'GET',
-            dataType: 'json',
+    $.ajax({
+        url: url,
+        method: 'GET',
+        dataType: 'json',
 
-            success:function(monObjet){
+        success:function(monObjet){
 
-                var ville = monObjet.address.town;
+            var ville = monObjet.address.town;
+            ChargerMeteo(ville)
 
-                console.log(ville)
+        }
+      })
+    }) // navigator
+    $(this).unselect();
+  })
 
-            }
-        })
+  $('#champs_ville').click(function(){
+    $(this).select();
+  })
 
-    })
 
-    $('#go').click(function(){
-        var ville = $('#ville').val()
-        console.log(ville)
-        loadMeteo(ville)
-    })
-
-});
+}); // ready

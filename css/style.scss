@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+    color: #fff !important;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.btn:focus {
+    box-shadow: none;
+}
+
+html {
+    min-height: 100%;
+    background-image: linear-gradient(#81e3fe, #66a8ff);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+body {
+    background-color: transparent;
+}
+
+#application {
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+form {
+    display: flex;
+    justify-content: space-between;
+
+    .form-group {
+        display: flex;
+        width: auto;
+        width: calc(100% - 50px);
+        margin: 0;
+        background-color: rgba(255, 255, 255, .25);
+
+        input {
+            width: calc(100% - 50px);
+            height: 50px;
+            padding-left: 15px;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, .75);
+            font-weight: lighter;
+            text-transform: none;
+        }
+
+        #bouton_ville {
+            width: 50px;
+        }
+    }
+
+    #bouton_reset {
+        width: 50px;
+    }
+
+    button:hover {
+        filter: opacity(.5);
+        transition: filter .2s;
+    }
+}
+
+#contenu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+
+    * {
+        margin: 0 auto;
+        text-align: center;
+        font-weight: lighter;
+    }
+
+    #city {
+        font-size: 160%;
+        font-weight: bold;
+    }
+
+    #date, #humidity {
+        font-size: 80%;
+    }
+
+    #condition {
+        font-size: 120%;
+    }
+
+    #temperature {
+        font-size: 5em;
+        font-weight: bold;
+    }
+}
+
+#forecast {
+    width: 100%;
+    margin: 40px 0 0 0;
+    padding: 0 2%;
+    background-color: rgba(255, 255, 255, .25);
+
+    div {
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        padding: 20px 10px 20px 10px;
+
+        img {
+            margin-right: auto;
+        }
+
+        p {
+            margin: 0;
+            text-align: left !important;
+        
+            i {
+                margin-right: 5px;
+            }
+        }
+    }
+}
+
+#forecast {
+    img {
+        margin: 0 10px 10px 0;
+        object-fit: contain;
+    }
+}
